@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from bson import ObjectId
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt, get_jwt_identity
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app) 
@@ -95,4 +96,5 @@ def check_if_token_in_blacklist(jwt_header, jwt_payload):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    # app.run(debug=True, port=8080)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)), debug=True)
